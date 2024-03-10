@@ -1,5 +1,6 @@
 
-<mat-toolbar [color]="'primary'">
+<mat-card class="white-content">
+  <mat-toolbar [color]="'primary'">
     <div class="center">
       Sudoku Game
     </div>
@@ -11,30 +12,44 @@
           </mat-select>
     </div>
   </mat-toolbar>
-  <div [ngClass]="{'solve-message': status === 'solved', 'unsolved-message ': status !== 'solved'}">
-    {{ game_status }}
-  </div>
-<app-board [gameBoard]="gameBoard" [(activeField)]="activeField"></app-board>
-<div class="options">
-  <button mat-raised-button (click) ="newGame()" >
-    New Game
-</button>
-    <button mat-raised-button (click) ="validateBoard()" >
-        Validate
-    </button>
-    <button mat-raised-button  (click) ="solvePuzzle()">
-        Auto Solve
-    </button>
-  </div>
   
-  <div class="controls">
-    <button *ngFor="let button of numberButtons"
-           button
-            [disabled]="!this.activeField || this.activeField.readonly"
-            (click)="insertNumber(button.number)">
-      {{ button.number }}
+  <mat-card-content class="white-content">
+    <div [ngClass]="{'solve-message': status === 'solved', 'unsolved-message ': status !== 'solved'}">
+      {{ game_status }}
+    </div>
+    <div *ngIf="loading; else content" class="spinner-container">
+      <!-- Loading spinner -->
+      <mat-spinner diameter="50" ></mat-spinner>
+    </div>
+    <ng-template #content>
+    <app-board [gameBoard]="gameBoard" [(activeField)]="activeField"></app-board>
+  </ng-template>
+  </mat-card-content>
+  
+  <mat-card-actions class="white-content">
+    <div>
+    <div class="options">
+      <button mat-raised-button (click) ="newGame()" >
+        New Game
     </button>
-  </div>
+        <button mat-raised-button (click) ="validateBoard()" >
+            Validate
+        </button>
+        <button mat-raised-button  (click) ="solvePuzzle()">
+            Auto Solve
+        </button>
+      </div>
+      <div class="controls" >
+        <button *ngFor="let button of numberButtons"
+               button
+                [disabled]="!this.activeField || this.activeField.readonly"
+                (click)="insertNumber(button.number)">
+          {{ button.number }}
+        </button>
+      </div>
+    </div>
+  </mat-card-actions>
+</mat-card>
 
 
 

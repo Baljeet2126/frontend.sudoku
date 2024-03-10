@@ -5,6 +5,7 @@ import { BoardComponent } from '../board/board.component';
 import { CommonModule } from '@angular/common';
 import {MatButtonModule} from '@angular/material/button'
 import {MatIconModule} from '@angular/material/icon'
+import { MatCardModule } from '@angular/material/card';
 import { Observable,  } from 'rxjs';
 import { Store, StoreModule} from '@ngrx/store'
 import { BoardService } from '../../service/board.service';
@@ -12,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { Difficulty, Status, SudokuRequest } from '../../model/board';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSelectModule } from '@angular/material/select';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FormsModule } from '@angular/forms';
 import * as SudokuActions from '..//../state/sudoku.actions';
 import { Utility } from '../../utility/utility';
@@ -26,7 +28,14 @@ const board_range = (newValue: number, min: number, max: number) => {
   standalone:true,
   templateUrl: './sudoku.component.html',
   styleUrls: ['./sudoku.component.scss'],
-  imports:[BoardComponent,CommonModule,MatButtonModule,MatIconModule,MatToolbarModule,MatSelectModule,HttpClientModule,FormsModule,StoreModule  ]
+  imports:[
+    BoardComponent,CommonModule,
+    MatButtonModule,MatIconModule,
+    MatToolbarModule,
+    MatSelectModule,HttpClientModule,
+    FormsModule,StoreModule,
+    MatCardModule,MatProgressSpinnerModule
+  ]
 })
 export class SudokuComponent  {
   private store = inject(Store);
@@ -49,7 +58,7 @@ export class SudokuComponent  {
     {number: 9}
   ];
   game_status: string | undefined ;
-
+  loading:boolean = false;
   constructor(private apiService: BoardService){
    this.board$ = this.store.select('Sudoku_reducer');
   }
@@ -58,17 +67,22 @@ export class SudokuComponent  {
    this.prepareBoard();
   }
 
-  private prepareBoard()
-  {
+  private prepareBoard() {
+    this.loading = true;
+  
     this.apiService.getBoard(this.difficulty_level).subscribe({
-        next: (data) => {
-          this.localBoard =  data.board.map((row) => [...row]);
-          this.store.dispatch(SudokuActions.updateGameBoard({ board:  this.localBoard }));
-          this.gameBoard =Utility.map_board_respone(this.localBoard);
-        },
-        error: (e) => console.error(e)
-      });
-}
+      next: (data) => {
+        this.localBoard = data.board.map((row) => [...row]);
+        this.store.dispatch(SudokuActions.updateGameBoard({ board: this.localBoard }));
+        this.gameBoard = Utility.map_board_respone(this.localBoard);
+        this.loading = false;
+      },
+      error: (e) => {
+        console.error(e);
+        this.loading = false;
+      },
+    });
+  }
 
 change_DifficultyLevel(level:Difficulty)
 {

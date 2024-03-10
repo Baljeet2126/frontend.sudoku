@@ -1,9 +1,10 @@
 $text-unsolved-color: #b54d3f;
 $text-solved-color: #3fb549;
 .options {
+  padding: 0 16px;
     display: flex;
     margin: 8px -8px;
-  
+    flex-direction: row; 
     button {
       flex: 1;
       margin: 8px;
@@ -15,8 +16,9 @@ $text-solved-color: #3fb549;
   }
   
   .controls {
+    padding: 0 16px;
     display: flex;
-  
+    flex-direction: row; 
     button {
       flex: 1;
       min-width: 0;
@@ -57,7 +59,7 @@ $text-solved-color: #3fb549;
   main {
     max-width: 400px;
     margin: 0 auto;
-    padding: 16px;
+    padding: 14px;
   }
 
   .solve-message 
@@ -83,18 +85,19 @@ $text-solved-color: #3fb549;
       padding-bottom: 3%;
       color: $text-unsolved-color;
   }
-
-  
-  
   .spinner-container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
-  
+    align-items: center;
+  }
     mat-spinner {
       margin-bottom: 32px;
+      
     }
+  
+
+  .white-content {
+    background-color: white;
   }
   
 
