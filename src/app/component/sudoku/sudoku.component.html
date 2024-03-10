@@ -1,0 +1,41 @@
+
+<mat-toolbar [color]="'primary'">
+    <div class="center">
+      Sudoku Game
+    </div>
+    <div class="right">
+        <mat-select [(ngModel)]="difficulty_level" placeholder="Level" (ngModelChange)="change_DifficultyLevel($event)" >
+            <mat-option value="easy">Easy</mat-option>
+            <mat-option value="medium">Medium</mat-option>
+            <mat-option value="hard">Hard</mat-option>
+          </mat-select>
+    </div>
+  </mat-toolbar>
+  <div [ngClass]="{'solve-message': status === 'solved', 'unsolved-message ': status !== 'solved'}">
+    {{ game_status }}
+  </div>
+<app-board [gameBoard]="gameBoard" [(activeField)]="activeField"></app-board>
+<div class="options">
+  <button mat-raised-button (click) ="newGame()" >
+    New Game
+</button>
+    <button mat-raised-button (click) ="validateBoard()" >
+        Validate
+    </button>
+    <button mat-raised-button  (click) ="solvePuzzle()">
+        Auto Solve
+    </button>
+  </div>
+  
+  <div class="controls">
+    <button *ngFor="let button of numberButtons"
+           button
+            [disabled]="!this.activeField || this.activeField.readonly"
+            (click)="insertNumber(button.number)">
+      {{ button.number }}
+    </button>
+  </div>
+
+
+
+ 

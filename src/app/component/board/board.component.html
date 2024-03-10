@@ -1,0 +1,18 @@
+<ng-container *ngFor="let row of gameBoard; index as rowIndex">
+  <div class="cell"
+       *ngFor="let field of row; index as colIndex"
+       [class.top]="rowIndex % 3 === 0"
+       [class.bottom]="rowIndex % 3 === 2"
+       [class.left]="colIndex % 3 === 0"
+       [class.right]="colIndex % 3 === 2"
+       [class.readonly]="field.readonly"
+       [class.highlight-row]="rowIndex === currentRow"
+       [class.highlight-col]="colIndex === currentCol"
+       [class.active]="field === activeField"
+       (click)="onFieldClick(field,rowIndex,colIndex)"
+      >
+    <div class="value">{{ field.value }}</div>
+  </div>
+</ng-container>
+
+

@@ -1,0 +1,102 @@
+$text-unsolved-color: #b54d3f;
+$text-solved-color: #3fb549;
+.options {
+    display: flex;
+    margin: 8px -8px;
+  
+    button {
+      flex: 1;
+      margin: 8px;
+  
+      &.active {
+        background: #83c8ef;
+      }
+    }
+  }
+  
+  .controls {
+    display: flex;
+  
+    button {
+      flex: 1;
+      min-width: 0;
+      text-align: center;
+      font-size: x-large;
+    }
+  }
+  mat-toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
+    margin-bottom: 16px;
+  
+    .left, .center, .right {
+      display: flex;
+      flex: 1;
+    }
+  
+    .left {
+      justify-content: flex-start;
+    }
+  
+    .center {
+      justify-content: center;
+    }
+  
+    .right {
+      justify-content: flex-end;
+    }
+  
+    mat-select {
+      text-align: right;
+      font-size: 14px;
+    }
+  }
+  
+  main {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 16px;
+  }
+
+  .solve-message 
+  {
+    justify-content: center;
+    font-size: 10px;
+    flex: 1;
+      min-width: 0;
+      text-align: center;
+      font-size: x-large;
+      padding-bottom: 3%;
+      color: $text-solved-color;
+  }
+
+  .unsolved-message 
+  {
+    justify-content: center;
+    font-size: 10px;
+    flex: 1;
+      min-width: 0;
+      text-align: center;
+      font-size: x-large;
+      padding-bottom: 3%;
+      color: $text-unsolved-color;
+  }
+
+  
+  
+  .spinner-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  
+    mat-spinner {
+      margin-bottom: 32px;
+    }
+  }
+  
+
+  
+  
