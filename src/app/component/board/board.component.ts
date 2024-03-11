@@ -14,27 +14,10 @@ export class BoardComponent {
   @Input() gameBoard: Sudoku = [];
   @Input() activeField?: SudokuField;
   @Output() activeFieldChange = new EventEmitter<SudokuField>();
-
   sudoku: Sudoku  = [];
   currentField: any;
- 
-  constructor() {
-     
+  constructor() { 
   }
-
-
-  ngOnInit() {
-   // this.gameBoard = this.gameBoard.map(row => row.map(number =>({ value: number.value ==0 ? undefined : number.value, readonly : number.readonly })));
-  }
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['gameBoard']) {
-      this.activeField = undefined;
-  
-
-    }
-  }
-
-
 
   onFieldClick(field: SudokuField,rowIndex:number, colIndex:number): void {
     this.activeField = {};
@@ -42,15 +25,8 @@ export class BoardComponent {
     this.activeField.rowIndex = rowIndex;
     this.activeField.colIndex = colIndex;
     this.activeField.readonly = field.readonly;
+    this.activeField.value = !this.activeField.readonly && this.activeField.value! >0 ? undefined : this.activeField.value
     this.activeFieldChange.emit(this.activeField);
-  }
-
-  
-  insertNumber(number: number) {
-    const field = this.currentField;
-     if (!field.readonly) {
-      field.value = number;
-    }
   }
 
   get currentRow(): number {
@@ -61,11 +37,8 @@ export class BoardComponent {
     if (!this.activeField || this.currentRow === -1) {
       return -1;
     }
-
     return this.gameBoard[this.currentRow].indexOf(this.activeField);
   }
-
-  
 }
 
 

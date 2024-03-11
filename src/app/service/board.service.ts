@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Board, BoardResponse, Difficulty, SudokuRequest, SudokuResponse } from '../model/board';
+import { BoardResponse, Difficulty, SudokuRequest } from '../model/board';
 
 
 const baseUrl = 'https://sugoku.onrender.com';

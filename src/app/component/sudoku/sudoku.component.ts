@@ -16,7 +16,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSelectModule } from '@angular/material/select';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FormsModule } from '@angular/forms';
-import * as SudokuActions from '..//../state/sudoku.actions';
+import * as SudokuActions from './sudoku.actions';
 import { Utility } from '../../utility/utility';
 
 // Function to limit a value to a specified range
@@ -43,22 +43,11 @@ export class SudokuComponent {
   private store = inject(Store);
   gameBoard: Sudoku = [];
   activeField?: SudokuField;
-  sudokuGrid: number[][] = [];
   localBoard: number[][] = [];
   difficulty_level: Difficulty = "easy";
   status: Status = "unsolved";
   board$?: Observable<number[][]> | undefined;
-  numberButtons: NumberButton[] = [
-    { number: 1 },
-    { number: 2 },
-    { number: 3 },
-    { number: 4 },
-    { number: 5 },
-    { number: 6 },
-    { number: 7 },
-    { number: 8 },
-    { number: 9 }
-  ];
+  numberButtons: NumberButton[] = Utility.NumberButton
   game_status: string | undefined;
   loading: boolean = false;
 
@@ -70,9 +59,9 @@ export class SudokuComponent {
     this.prepareBoard();
   }
 
+  // Function to prepare Game Board based on selected difficulty level and it fetech value via API.
   private prepareBoard() {
     this.loading = true;
-
     this.apiService.getBoard(this.difficulty_level).subscribe({
       next: (data) => {
         this.localBoard = data.board.map((row) => [...row]);
@@ -155,6 +144,9 @@ export class SudokuComponent {
   }
 
   @HostListener('window:keydown.backspace') onBackspace(): void {
+    this.erase();
+  }
+  @HostListener('window:keydown.escape') onEscape(): void {
     this.erase();
   }
 
