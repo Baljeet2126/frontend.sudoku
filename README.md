@@ -9,11 +9,11 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 2.**Get all node Modules**
 
-run this command in terminal `npm install`
+run `npm install` command in terminal 
 
 3.**launch the application**
 
-run this command in terminal `ng serve`  
+run `ng serve` command in terminal   
 Navigate to http://localhost:4200/ in your browser and Enjoy the Game.
 
                   
