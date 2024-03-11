@@ -14,7 +14,7 @@ run this command in terminal `npm install`
 3.**launch the application**
 
 run this command in terminal `ng serve`  
-Navigate to `http://localhost:4200/` in your browser and Enjoy the Game.
+Navigate to http://localhost:4200/ in your browser and Enjoy the Game.
 
                   
  ![image](https://github.com/Baljeet2126/frontend.sudoku/assets/162845911/a196f68c-99c6-4599-99f9-46204d8eaa73)
