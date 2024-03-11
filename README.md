@@ -2,6 +2,25 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.2.3.
 
+## To run the project locally, follow these steps:
+1. **Clone the repository from GitHub.**
+   
+  https://github.com/Baljeet2126/frontend.sudoku.git
+
+2.**Get all node Modules**
+
+run this command in terminal `npm install`
+
+3.**launch the application**
+
+run this command in terminal `ng serve`  
+Navigate to `http://localhost:4200/` in your browser and Enjoy the Game.
+
+                  
+ ![image](https://github.com/Baljeet2126/frontend.sudoku/assets/162845911/a196f68c-99c6-4599-99f9-46204d8eaa73)
+
+   
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
