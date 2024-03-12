@@ -60,7 +60,7 @@ export class SudokuComponent {
   }
 
   // Function to prepare Game Board based on selected difficulty level and it fetech value via API.
-  private prepareBoard() {
+   prepareBoard() {
     this.loading = true;
     this.apiService.getBoard(this.difficulty_level).subscribe({
       next: (data) => {

@@ -2,11 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { BoardResponse, Difficulty, SudokuRequest } from '../model/board';
-
-
 const baseUrl = 'https://sugoku.onrender.com';
 const headers = new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'});
-
 @Injectable({
   providedIn: 'root'
 })
@@ -25,8 +22,4 @@ export class BoardService {
   solveBoard(board : SudokuRequest): Observable<any> {
     return this.http.post(`${baseUrl}/solve`, board,{headers});
   }
-
-  
-
-
 }
