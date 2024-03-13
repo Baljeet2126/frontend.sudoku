@@ -17,15 +17,19 @@
     <div [ngClass]="{'solve-message': status === 'solved', 'unsolved-message ': status !== 'solved'}">
       {{ game_status }}
     </div>
-    <div *ngIf="loading; else content" class="spinner-container">
+    @if(loading)
+    {
+    <div class="spinner-container">
       <!-- Loading spinner -->
       <mat-spinner diameter="50" ></mat-spinner>
     </div>
-    <ng-template #content>
+  }
+  @else {
     <app-board [gameBoard]="gameBoard" [(activeField)]="activeField"></app-board>
-  </ng-template>
+  }
   </mat-card-content>
-  
+  @if(!loading)
+  {
   <mat-card-actions class="white-content">
     <div>
     <div class="options">
@@ -49,6 +53,7 @@
       </div>
     </div>
   </mat-card-actions>
+}
 </mat-card>
 
 
